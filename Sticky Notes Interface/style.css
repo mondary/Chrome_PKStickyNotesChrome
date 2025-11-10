@@ -1,0 +1,180 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: #f0f0f0;
+  padding: 20px;
+  min-height: 100vh;
+}
+
+.sticky-note {
+  background-color: #ffeb3b;
+  background: linear-gradient(135deg, #ffeb3b 0%, #fdd835 100%);
+  width: 320px;
+  min-height: 600px;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  position: relative;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #333;
+  margin: 0 auto;
+  max-width: 768px;
+}
+
+.sticky-note::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 20px;
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 0 0 8px 8px;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.note-header h2 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #2c2c2c;
+}
+
+.note-header p {
+  font-size: 13px;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.note-section {
+  margin-bottom: 15px;
+}
+
+.note-section h3 {
+  font-size: 15px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #2c2c2c;
+}
+
+.note-section p {
+  margin-bottom: 3px;
+  color: #333;
+}
+
+.email-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.emoji {
+  margin-right: 5px;
+  font-size: 16px;
+}
+
+.shortcuts {
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 10px;
+  border-radius: 6px;
+  margin: 15px 0;
+}
+
+.shortcuts p {
+  font-family: 'Monaco', 'Menlo', monospace;
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+.todo p {
+  position: relative;
+  padding-left: 8px;
+}
+
+.todo p:before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: #666;
+}
+
+.divider {
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.2);
+  margin: 20px 0;
+}
+
+.divider-thick {
+  height: 3px;
+  background-color: rgba(0, 0, 0, 0.3);
+  margin: 20px 0;
+  border-radius: 2px;
+}
+
+.note-footer {
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  font-style: italic;
+  color: #666;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+  
+  .sticky-note {
+    width: 100%;
+    max-width: 100%;
+    padding: 15px;
+  }
+  
+  .note-header h2 {
+    font-size: 16px;
+  }
+  
+  .note-section {
+    font-size: 13px;
+  }
+}
+
+/* Hover effects */
+.sticky-note:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+/* Text selection styling */
+::selection {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Scrollbar styling for webkit browsers */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.4);
+}
