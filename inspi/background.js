@@ -9,13 +9,7 @@
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   AnalyticsEvent: () => (/* binding */ AnalyticsEvent),
-/* harmony export */   sendAnalytics: () => (/* binding */ sendAnalytics),
-/* harmony export */   sendEvent: () => (/* binding */ sendEvent)
-/* harmony export */ });
-/* harmony import */ var _client__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../client */ "./src/client/index.ts");
-/* harmony import */ var _user_session__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../user/session */ "./src/user/session.ts");
+// Removed analytics functionality
 var __assign = (undefined && undefined.__assign) || function () {
     __assign = Object.assign || function(t) {
         for (var s, i = 1, n = arguments.length; i < n; i++) {
@@ -77,273 +71,13 @@ var AnalyticsEvent = /** @class */ (function () {
 }());
 //Analytics do not send any information about the content of the notes
 //Analytics are opt out anytime
-function sendEvent(e) {
-    return __awaiter(this, void 0, void 0, function () {
-        var _this = this;
-        return __generator(this, function (_a) {
-            //check for user opt out
-            if (e == undefined) {
-                throw Error("Can not send an undefined event");
-            }
-            chrome.storage.sync.get({ analyticsEnabled: true }, function (prefs) { return __awaiter(_this, void 0, void 0, function () {
-                var userId;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            if (chrome.runtime.lastError) {
-                                console.error(chrome.runtime.lastError.message);
-                                return [2 /*return*/];
-                            }
-                            if (!prefs.analyticsEnabled) {
-                                return [2 /*return*/];
-                            }
-                            return [4 /*yield*/, (0,_user_session__WEBPACK_IMPORTED_MODULE_1__.getOrCreateClientId)()];
-                        case 1:
-                            userId = _a.sent();
-                            _client__WEBPACK_IMPORTED_MODULE_0__.DefaultService.post({
-                                requestBody: { data: { domain: e.domain }, user_id: userId },
-                            }).catch(function (err) { return console.log("Attempted post failed"); });
-                            return [2 /*return*/];
-                    }
-                });
-            }); });
-            return [2 /*return*/];
-        });
-    });
-}
-function sendAnalytics(name_1) {
-    return __awaiter(this, arguments, void 0, function (name, data) {
-        var _this = this;
-        if (data === void 0) { data = {}; }
-        return __generator(this, function (_a) {
-            chrome.storage.sync.get({ analyticsEnabled: true }, function (prefs) { return __awaiter(_this, void 0, void 0, function () {
-                var _a, _b, _c, _d;
-                var _e, _f, _g, _h;
-                return __generator(this, function (_j) {
-                    switch (_j.label) {
-                        case 0:
-                            if (!prefs.analyticsEnabled) {
-                                return [2 /*return*/];
-                            }
-                            _a = fetch;
-                            _b = ["".concat(GA_ENDPOINT, "?measurement_id=").concat(MEASUREMENT_ID, "&api_secret=").concat(API_SECRET)];
-                            _e = {
-                                method: "POST"
-                            };
-                            _d = (_c = JSON).stringify;
-                            _f = {};
-                            return [4 /*yield*/, (0,_user_session__WEBPACK_IMPORTED_MODULE_1__.getOrCreateClientId)()];
-                        case 1:
-                            _f.client_id = _j.sent();
-                            _g = {
-                                name: name
-                            };
-                            _h = {};
-                            return [4 /*yield*/, (0,_user_session__WEBPACK_IMPORTED_MODULE_1__.getOrCreateSessionId)()];
-                        case 2:
-                            _a.apply(void 0, _b.concat([(_e.body = _d.apply(_c, [(_f.events = [
-                                        (_g.params = __assign.apply(void 0, [(_h.session_id = _j.sent(), _h.engagement_time_msec = DEFAULT_ENGAGEMENT_TIME_IN_MSEC, _h), data]),
-                                            _g)
-                                    ],
-                                        _f)]),
-                                    _e)]));
-                            return [2 /*return*/];
-                    }
-                });
-            }); });
-            return [2 /*return*/];
-        });
-    });
-}
+// Removed analytics functionality
 
 
 
 /***/ }),
 
-/***/ "./src/background/auth.ts":
-/*!********************************!*\
-  !*** ./src/background/auth.ts ***!
-  \********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   isPaid: () => (/* binding */ isPaid),
-/* harmony export */   launchGoogleAuthFlow: () => (/* binding */ launchGoogleAuthFlow),
-/* harmony export */   openPaymentPage: () => (/* binding */ openPaymentPage)
-/* harmony export */ });
-/* harmony import */ var _client__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../client */ "./src/client/index.ts");
-/* harmony import */ var jwt_decode__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! jwt-decode */ "./node_modules/jwt-decode/build/esm/index.js");
-/* harmony import */ var _analytics_analytics__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../analytics/analytics */ "./src/analytics/analytics.ts");
-var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (undefined && undefined.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (g && (g = 0, op[0] && (_ = 0)), _) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
-
-
-
-var google = {
-    CLIENT_ID: encodeURIComponent("51798234758-hvohau8e6v2k07vje0rpguenb89q1p8r.apps.googleusercontent.com"),
-    RESPONSE_TYPE: encodeURIComponent("id_token"),
-    REDIRECT_URI: encodeURIComponent("https://gdcmnnclkneggcgjookihlggijjkdhli.chromiumapp.org/"),
-    STATE: encodeURIComponent("jfkls3n"),
-    SCOPE: encodeURIComponent("openid"),
-    PROMPT: encodeURIComponent("consent"),
-};
-function create_oauth2_url() {
-    var nonce = encodeURIComponent(Math.random().toString(36).substring(2, 15) +
-        Math.random().toString(36).substring(2, 15));
-    var url = "https://accounts.google.com/o/oauth2/v2/auth?client_id=".concat(google.CLIENT_ID, "&response_type=").concat(google.RESPONSE_TYPE, "&redirect_uri=").concat(google.REDIRECT_URI, "&state=").concat(google.STATE, "&scope=").concat(google.SCOPE, "&prompt=").concat(google.PROMPT, "&nonce=").concat(nonce);
-    return url;
-}
-function launchGoogleAuthFlow(_a) {
-    return __awaiter(this, arguments, void 0, function (_b) {
-        var google_id;
-        var onSuccess = _b.onSuccess, onError = _b.onError, onCancel = _b.onCancel;
-        return __generator(this, function (_c) {
-            switch (_c.label) {
-                case 0: return [4 /*yield*/, getGoogleId().catch(function (err) {
-                        return console.debug("google id not found attempting sign in");
-                    })];
-                case 1:
-                    google_id = _c.sent();
-                    if (google_id) {
-                        onSuccess(google_id);
-                        return [2 /*return*/];
-                    }
-                    //check if the google id already exists
-                    chrome.identity.launchWebAuthFlow({
-                        url: create_oauth2_url(),
-                        interactive: true,
-                    }, function (redirect_url) {
-                        return __awaiter(this, void 0, void 0, function () {
-                            var id_token, decoded;
-                            var _this = this;
-                            return __generator(this, function (_a) {
-                                switch (_a.label) {
-                                    case 0:
-                                        if (chrome.runtime.lastError) {
-                                            onCancel();
-                                            return [2 /*return*/];
-                                        }
-                                        if (redirect_url === undefined) {
-                                            onError();
-                                            return [2 /*return*/];
-                                        }
-                                        id_token = redirect_url.substring(redirect_url.indexOf("id_token=") + 9);
-                                        id_token = id_token.substring(0, id_token.indexOf("&"));
-                                        decoded = (0,jwt_decode__WEBPACK_IMPORTED_MODULE_1__.jwtDecode)(id_token);
-                                        return [4 /*yield*/, _client__WEBPACK_IMPORTED_MODULE_0__.AuthService.authenticateGoogleUser({
-                                                requestBody: { id_token: id_token },
-                                            })
-                                                .then(function () { return __awaiter(_this, void 0, void 0, function () {
-                                                return __generator(this, function (_a) {
-                                                    switch (_a.label) {
-                                                        case 0: return [4 /*yield*/, saveGoogleIdentity(decoded.sub)];
-                                                        case 1:
-                                                            _a.sent();
-                                                            onSuccess(decoded.sub);
-                                                            return [2 /*return*/];
-                                                    }
-                                                });
-                                            }); })
-                                                .catch(function (err) { return onError(); })];
-                                    case 1:
-                                        _a.sent();
-                                        return [2 /*return*/];
-                                }
-                            });
-                        });
-                    });
-                    return [2 /*return*/];
-            }
-        });
-    });
-}
-function saveGoogleIdentity(user_id) {
-    return __awaiter(this, void 0, void 0, function () {
-        return __generator(this, function (_a) {
-            chrome.storage.local.set({ google_id: user_id });
-            return [2 /*return*/];
-        });
-    });
-}
-function isPaid() {
-    return __awaiter(this, void 0, void 0, function () {
-        var google_id, payment_info;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4 /*yield*/, getGoogleId().catch(function (err) {
-                        throw { reason: "AuthError", message: "Google id not found" };
-                    })];
-                case 1:
-                    google_id = _a.sent();
-                    return [4 /*yield*/, _client__WEBPACK_IMPORTED_MODULE_0__.AuthService.getPaymentInfo({
-                            userId: google_id,
-                        }).catch(function (err) {
-                            throw { reason: "ConnectionError", message: "Connection not established" };
-                        })];
-                case 2:
-                    payment_info = _a.sent();
-                    return [2 /*return*/, payment_info.paid];
-            }
-        });
-    });
-}
-function getGoogleId() {
-    return __awaiter(this, void 0, void 0, function () {
-        return __generator(this, function (_a) {
-            return [2 /*return*/, new Promise(function (resolve, reject) {
-                    chrome.storage.local.get("google_id", function (data) {
-                        if (chrome.runtime.lastError || data.google_id === undefined) {
-                            reject({
-                                name: "AuthError",
-                                message: "Google id not found in storage",
-                            });
-                        }
-                        resolve(data.google_id);
-                    });
-                })];
-        });
-    });
-}
-function openPaymentPage() {
-    // Removed analytics tracking
-    // Removed options page functionality
-    // This function is kept for potential future use
-}
 
 
 
@@ -6578,8 +6312,7 @@ var __webpack_exports__ = {};
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _contexts__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./contexts */ "./src/background/contexts.ts");
 /* harmony import */ var _commands__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./commands */ "./src/background/commands.ts");
-/* harmony import */ var _auth__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./auth */ "./src/background/auth.ts");
-/* harmony import */ var _analytics_analytics__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../analytics/analytics */ "./src/analytics/analytics.ts");
+
 /* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./util */ "./src/background/util.ts");
 /* harmony import */ var _user_session__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../user/session */ "./src/user/session.ts");
 /* harmony import */ var _client__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../client */ "./src/client/index.ts");
@@ -6662,12 +6395,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, res) {
     if (!request.message) {
         return false;
     }
-    if (request.message == "is-paid") {
-        (0,_auth__WEBPACK_IMPORTED_MODULE_2__.isPaid)()
-            .then(function (paid) { return res(paid); })
-            .catch(function (err) { return res(false); });
-        return true;
-    }
+
 
     if (request.message == "open-page") {
         chrome.tabs.create({
