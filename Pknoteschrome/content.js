@@ -100,13 +100,6 @@ function stopDrag() {
   document.removeEventListener('mouseup', stopDrag);
 }
 
-// Add button
-const addBtn = document.createElement('button');
-addBtn.id = 'add-note';
-addBtn.textContent = '+';
-document.body.appendChild(addBtn);
-addBtn.addEventListener('click', () => createNote(window.innerWidth - 220, 20));
-
 // Save notes
 function saveNotes() {
   const notes = Array.from(document.querySelectorAll('.sticky-note')).map(note => ({
@@ -120,6 +113,24 @@ function saveNotes() {
   }));
   chrome.storage.local.set({ [siteKey]: notes });
 }
+
+// Add floating button based on user settings
+async function initializeFloatingButton() {
+  // Get user preference
+  const options = await chrome.storage.sync.get(['showFloatingButton']);
+  const showFloatingButton = options.showFloatingButton !== false; // Default to true
+  
+  if (showFloatingButton) {
+    const addBtn = document.createElement('button');
+    addBtn.id = 'add-note';
+    addBtn.textContent = '+';
+    document.body.appendChild(addBtn);
+    addBtn.addEventListener('click', () => createNote(window.innerWidth - 220, 20));
+  }
+}
+
+// Initialize the floating button
+initializeFloatingButton();
 
 // Listen for messages from background script
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {

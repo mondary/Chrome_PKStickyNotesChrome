@@ -3,7 +3,7 @@
   "name": "PK Sticky Notes",
   "version": "1.0",
   "description": "Add sticky notes to web pages",
-  "permissions": ["storage", "activeTab", "tabs"],
+  "permissions": ["storage", "activeTab", "tabs", "contextMenus"],
   "action": {
     "default_title": "Create New Note",
     "default_icon": "icon.png"
@@ -11,6 +11,7 @@
   "background": {
     "service_worker": "background.js"
   },
+  "options_page": "options.html",
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
