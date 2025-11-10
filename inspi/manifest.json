@@ -1,9 +1,6 @@
 {
-"update_url": "https://clients2.google.com/service/update2/crx",
-
   "manifest_version": 3,
   "name": "PKsticky",
-  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtWY7+7RlPX7XXT39uX7GGdPl7XTmYU3LseNL4XoaL0oFA05VjPVwoT8rmt7wN6y6YQOvdZtK/eQW+DHj+jGFqS1ffBOjP3WYHzfFTBLxGkUG92U6wHJEpQNeQFoWBt5tFDq0ncQHZGN763dMN6wXyGc7yIZOu+LjuimcbDKKNV1oQsf8zsfWsmGics95R+ymf9Q63q0FuPXw8AT5okiEge/wULws5MTlrlmwFu4BVmVQtOQKJ4QbHuT8EWaliBF2ImmEAl2KLc5Pe1klEmtldvlr2Yo6LSLXDPb6Z6qAvjP6N3jChcSJ4lcSoR5AGXmXlOMsWP0sFuU5LzY8j0hMLwIDAQAB",
   "permissions": [
     "storage",
     "activeTab",

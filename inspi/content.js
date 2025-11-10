@@ -108,8 +108,8 @@ function createNotePad(note_id, x, y, text_content, color_index) {
         el.onclick = onclick;
         dragger.appendChild(el);
     }
-    // Add color palette icon
-    var colorIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>';
+    // Add color palette icon (using highlight-alt.svg from assets with same styling as other icons)
+    var colorIcon = '<img src="' + chrome.runtime.getURL("assets/highlight-alt.svg") + '" style="width: 25px; height: 20px; cursor: pointer;">';
     addOption(colorIcon, function () {
         // Cycle to next color in palette
         var nextColorIndex = (color_index + 1) % colorPalette.length;
