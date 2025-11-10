@@ -30,9 +30,66 @@ const colorList = [
   '#9e9e9e'
 ];
 
-// Track the position of the last created note to stack new notes below
-let lastNoteY = 20;
-let lastNoteX = 20;
+// Function to find optimal position for a new note
+function findOptimalPosition(noteWidth = 210, noteHeight = 110) {
+  const viewportWidth = window.innerWidth;
+  const viewportHeight = window.innerHeight;
+  
+  // Get all existing notes to calculate occupied spaces
+  const existingNotes = document.querySelectorAll('.sticky-note');
+  const occupiedAreas = [];
+  
+  existingNotes.forEach(note => {
+    const rect = note.getBoundingClientRect();
+    const computedStyle = window.getComputedStyle(note);
+    
+    // Calculate actual position including margins/borders
+    const noteX = parseFloat(computedStyle.left) || rect.left;
+    const noteY = parseFloat(computedStyle.top) || rect.top;
+    
+    occupiedAreas.push({
+      x: noteX,
+      y: noteY,
+      width: rect.width,
+      height: rect.height
+    });
+  });
+  
+  // Start search from top-left corner
+  const margin = 50; // Space around notes
+  let newY = margin;
+  
+  while (newY < viewportHeight - noteHeight) {
+    // Try to place the note at this Y level
+    let newX = margin;
+    
+    while (newX < viewportWidth - noteWidth) {
+      // Check if this position overlaps with any existing note
+      let overlap = false;
+      for (const area of occupiedAreas) {
+        // Check for collision: (x1 < x2+w2) && (x2 < x1+w1) && (y1 < y2+h2) && (y2 < y1+h1)
+        if (newX < area.x + area.width + margin &&
+            area.x < newX + noteWidth + margin &&
+            newY < area.y + area.height + margin &&
+            area.y < newY + noteHeight + margin) {
+          overlap = true;
+          newX = area.x + area.width + margin; // Skip past the overlapping note
+          break;
+        }
+      }
+      
+      if (!overlap) {
+        return { x: newX, y: newY };
+      }
+    }
+    
+    // If we couldn't find a position at this Y level, try the next one
+    newY += 100; // Increment Y by some value or try after the lowest note at this level
+  }
+  
+  // If we can't find a good position, just place it in the default location
+  return { x: margin, y: margin };
+}
 
 // Create note function
 function createNote(x, y, text = '', colorIndex = 0, width = '210px', height = '110px', pinned = false) {
@@ -62,7 +119,7 @@ function createNote(x, y, text = '', colorIndex = 0, width = '210px', height = '
   resizeObserver.observe(note);
   note.resizeObserver = resizeObserver;
   
-  // Set up event listeners
+  // Set up event listeners - attach to the note element to handle dragging from header
   note.addEventListener('mousedown', startDrag);
   
   const editable = note.querySelector('div[contenteditable]');
@@ -84,12 +141,6 @@ function createNote(x, y, text = '', colorIndex = 0, width = '210px', height = '
     saveNotes();
   });
   
-  // Update last note position for next note
-  const noteRect = note.getBoundingClientRect();
-  const noteBottom = parseInt(note.style.top) + noteRect.height;
-  if (noteBottom > lastNoteY) {
-    lastNoteY = noteBottom + 10; // Add 10px spacing
-  }
 }
 
 // Drag variables
@@ -97,21 +148,23 @@ let isDragging = false, dragNote = null, offsetX, offsetY;
 
 // Drag functions
 function startDrag(e) {
-  // Only allow dragging when clicking on the header element, the scotch (::before pseudo-element area), or the buttons
-  const isHeaderArea = e.target.classList.contains('sticky-note-header') ||
-                       e.target.closest('.sticky-note-header') ||
-                       e.target.matches('.delete') || 
-                       e.target.matches('.color') || 
-                       e.target.matches('.pin');
-  
-  // If user clicks inside the content area, don't drag
+  // Don't drag if clicking inside the content area
   if (e.target.matches('div[contenteditable]')) return;
   
-  // Only allow drag if clicking in the header area
-  if (!isHeaderArea) return;
+  // Don't drag if clicking on buttons
+  if (e.target.classList.contains('delete') || 
+      e.target.classList.contains('color') || 
+      e.target.classList.contains('pin')) return;
   
-  // Don't drag if clicking on resize handle (bottom right 20x20)
+  // Only allow dragging when clicking on the header area (top portion of the note)
   const rect = this.getBoundingClientRect();
+  const clickYPos = e.clientY - rect.top;
+  const headerHeight = 30; // Approximate height of the scotch tape area
+  
+  // Allow dragging only if click is in the header area (top ~30px of the note)
+  if (clickYPos > headerHeight) return;
+  
+  // Don't drag if clicking on resize handle (bottom right corner)
   if (e.clientX > rect.right - 20 && e.clientY > rect.bottom - 20) return;
   
   e.preventDefault();
@@ -162,7 +215,10 @@ async function initializeFloatingButton() {
     addBtn.id = 'add-note';
     addBtn.textContent = '+';
     document.body.appendChild(addBtn);
-    addBtn.addEventListener('click', () => createNote(lastNoteX, lastNoteY));
+    addBtn.addEventListener('click', () => {
+      const pos = findOptimalPosition();
+      createNote(pos.x, pos.y);
+    });
   }
 }
 
@@ -172,6 +228,7 @@ initializeFloatingButton();
 // Listen for messages from background script
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === 'createNote') {
-    createNote(lastNoteX, lastNoteY);
+    const pos = findOptimalPosition();
+    createNote(pos.x, pos.y);
   }
 });
