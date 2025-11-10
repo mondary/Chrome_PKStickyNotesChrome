@@ -3,7 +3,13 @@
   "name": "Simple Sticky Notes",
   "version": "1.0",
   "description": "Add sticky notes to web pages",
-  "permissions": ["storage"],
+  "permissions": ["storage", "activeTab"],
+  "action": {
+    "default_title": "Create New Note"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
   "content_scripts": [
     {
       "matches": ["<all_urls>"],

@@ -120,3 +120,10 @@ function saveNotes() {
   }));
   chrome.storage.local.set({ [siteKey]: notes });
 }
+
+// Listen for messages from background script
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  if (message.action === 'createNote') {
+    createNote(window.innerWidth - 220, 20);
+  }
+});
