@@ -11,8 +11,8 @@
   color: #333;
   resize: both;
   overflow: hidden;
-  min-width: 200px;
-  min-height: 100px;
+  min-width: 250px;
+  min-height: 180px;
   background: linear-gradient(135deg, #ffeb3b 0%, #fdd835 100%);
   transition: all 0.3s ease;
   box-sizing: border-box;
@@ -23,7 +23,7 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 25px;
+  height: 30px;
   cursor: move;
   z-index: 9999;
 }
@@ -49,19 +49,19 @@
 }
 
 .sticky-note div[contenteditable] {
-  position: absolute;
-  top: 25px;
-  left: 20px;
-  right: 20px;
-  bottom: 10px;
-  border: none;
-  background: transparent;
-  font-family: inherit;
-  font-size: 14px;
-  padding: 0;
-  outline: none;
-  overflow: auto;
-  cursor: text;
+   position: absolute;
+   top: 30px;
+   left: 20px;
+   right: 20px;
+   bottom: 30px;
+   border: none;
+   background: transparent;
+   font-family: inherit;
+   font-size: 14px;
+   padding: 0;
+   outline: none;
+   overflow: auto;
+   cursor: text;
 }
 
 .delete, .color, .pin {
