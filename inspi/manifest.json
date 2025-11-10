@@ -10,28 +10,11 @@
   },
   "version": "1.1.0",
   "description": "Place sticky notes on webpages",
-  "commands": {
-    "open-full-notes": {
-      "suggested_key": {
-        "default": "Ctrl+Shift+Y",
-        "mac": "Command+Shift+Y"
-      },
-      "description": "Open the minimalistic text editor"
-    },
-    "toggle-notes-menu": {
-      "suggested_key": {
-        "default": "Ctrl+Shift+H",
-        "mac": "Command+Shift+H"
-      },
-      "description": "Create a new note on the screen"
-    }
-  },
   "background": {
     "service_worker": "background.js"
   },
   "content_scripts": [
     {
-      "css": ["styles.css"],
       "matches": ["<all_urls>"],
       "exclude_globs": ["*.pdf"],
       "js": ["content.js"],
@@ -40,11 +23,5 @@
   ],
   "icons": {
     "128": "assets/logo-48x48.png"
-  },
-  "web_accessible_resources": [
-    {
-      "resources": ["*.svg"],
-      "matches": ["<all_urls>"]
-    }
-  ]
+  }
 }
