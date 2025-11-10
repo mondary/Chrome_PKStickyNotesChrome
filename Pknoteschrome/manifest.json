@@ -1,11 +1,12 @@
 {
   "manifest_version": 3,
-  "name": "Simple Sticky Notes",
+  "name": "PK Sticky Notes",
   "version": "1.0",
   "description": "Add sticky notes to web pages",
-  "permissions": ["storage", "activeTab"],
+  "permissions": ["storage", "activeTab", "tabs"],
   "action": {
-    "default_title": "Create New Note"
+    "default_title": "Create New Note",
+    "default_icon": "icon.png"
   },
   "background": {
     "service_worker": "background.js"

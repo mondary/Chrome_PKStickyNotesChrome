@@ -34,6 +34,7 @@
   transform: translateY(-2px);
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
 }
+
 .sticky-note div[contenteditable] {
   position: absolute;
   top: 20px;
@@ -48,6 +49,7 @@
   outline: none;
   overflow: auto;
 }
+
 .delete, .color, .pin {
   position: absolute;
   top: 5px;
@@ -62,28 +64,27 @@
   align-items: center;
   justify-content: center;
   font-size: 12px;
+  z-index: 10001;
 }
+
 .delete {
   right: 5px;
 }
+
 .color {
-  right: 49px;
+  right: 35px;
 }
+
 .pin {
-  right: 78px;
-  top: 0px;
+  right: 65px;
 }
+
 .sticky-note svg {
   width: 12px;
   height: 12px;
   fill: #333;
 }
-.delete {
-  right: 5px;
-}
-.color {
-  right: 30px;
-}
+
 #add-note {
   position: fixed;
   bottom: 20px;
@@ -99,44 +100,11 @@
   cursor: pointer;
   box-shadow: 0 2px 10px rgba(0,0,0,0.2);
   transition: background 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
 #add-note:hover {
   background: #0056b3;
-}
-.sticky-note textarea {
-  width: 200px;
-  height: 100px;
-  border: none;
-  background: transparent;
-  resize: both;
-}
-.delete, .color {
-  position: absolute;
-  top: 0;
-  font-size: 12px;
-  padding: 2px;
-  cursor: pointer;
-}
-.delete {
-  right: 0;
-}
-.color {
-  right: 20px;
-}
-.pin {
-  right: 45px;
-}
-#add-note {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 10001;
-  background: blue;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  font-size: 20px;
-  cursor: pointer;
 }
