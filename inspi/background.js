@@ -341,8 +341,8 @@ function getGoogleId() {
 }
 function openPaymentPage() {
     // Removed analytics tracking
-    // Redirect to a premium options page instead of install page
-    chrome.tabs.create({ url: chrome.runtime.getURL("options.html") });
+    // Removed options page functionality
+    // This function is kept for potential future use
 }
 
 
@@ -6649,43 +6649,11 @@ function getNotes(list_id) {
     });
 }
 var commands = {
-    move: handle_move,
     // Removed analytics commands
 };
 // Removed analytics event handling function
 // Removed analytics handling function
-function handle_move(request, sender, res) {
-    var _this = this;
-    (0,_analytics_analytics__WEBPACK_IMPORTED_MODULE_3__.sendAnalytics)("view_shared_notes");
-    var data = {
-        url: request.url,
-        list_id: request.list_id,
-    };
-    (function () { return __awaiter(_this, void 0, void 0, function () {
-        var notes;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4 /*yield*/, getNotes(data.list_id)];
-                case 1:
-                    notes = _a.sent();
-                    console.log(notes);
-                    chrome.tabs.update(sender.tab.id, { url: data.url }, function (tab) {
-                        chrome.tabs.onUpdated.addListener(function listener(tabId, info) {
-                            if (tabId === tab.id && info.status === "complete") {
-                                chrome.tabs.sendMessage(tabId, {
-                                    action: "load-shared-notes",
-                                    notes: notes.sticky_notes,
-                                });
-                                chrome.tabs.onUpdated.removeListener(listener);
-                            }
-                        });
-                    });
-                    return [2 /*return*/];
-            }
-        });
-    }); })();
-    return true;
-}
+// Removed share functionality
 chrome.runtime.onMessage.addListener(function (request, sender, res) {
     if (request.event) {
         (0,_util__WEBPACK_IMPORTED_MODULE_4__.sendContentMessage)(request);
@@ -6700,12 +6668,7 @@ chrome.runtime.onMessage.addListener(function (request, sender, res) {
             .catch(function (err) { return res(false); });
         return true;
     }
-    if (request.message == "share-notes") {
-        _client__WEBPACK_IMPORTED_MODULE_6__.DefaultService.share({ requestBody: { notes: request.notes } })
-            .then(function (value) { return res(value.url); })
-            .catch(function (err) { return res(err.message); });
-        return true;
-    }
+
     if (request.message == "open-page") {
         chrome.tabs.create({
             url: chrome.runtime.getURL(request.url),

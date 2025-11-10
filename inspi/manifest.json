@@ -3,16 +3,13 @@
   "name": "PKsticky",
   "permissions": [
     "storage",
-    "activeTab",
-    "unlimitedStorage",
-    "contextMenus",
-    "identity"
+    "activeTab"
   ],
   "action": {
     "default_title": "Click me"
   },
   "version": "1.1.0",
-  "description": "Place and share sticky notes on webpages",
+  "description": "Place sticky notes on webpages",
   "commands": {
     "open-full-notes": {
       "suggested_key": {
@@ -39,10 +36,6 @@
       "exclude_globs": ["*.pdf"],
       "js": ["content.js"],
       "run_at": "document_end"
-    },
-    {
-      "matches": ["https://pksticky.com/share*"],
-      "js": ["share.js"]
     }
   ],
   "icons": {
@@ -53,9 +46,5 @@
       "resources": ["*.svg"],
       "matches": ["<all_urls>"]
     }
-  ],
-  "options_ui": {
-    "open_in_tab": false,
-    "page": "options.html"
-  }
+  ]
 }
