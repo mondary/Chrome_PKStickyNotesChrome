@@ -1,0 +1,42 @@
+/* Default styles for sticky notes */
+.note-container {
+    position: absolute;
+    resize: both;
+    z-index: 9999;
+    width: 200px;
+    height: 200px;
+    min-width: 150px;
+    min-height: 150px;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.note-header {
+    height: 25px;
+    width: 100%;
+    cursor: move;
+    display: flex;
+    justify-content: flex-end;
+    gap: 2px;
+    background-color: #ffeb82; /* yellow theme */
+    padding: 4px;
+}
+
+.note-textarea {
+    width: 100%;
+    flex-grow: 1;
+    resize: none;
+    border: none;
+    outline: none;
+    padding: 8px;
+    font-family: inherit;
+    background-color: #fff3ab; /* yellow theme */
+    color: #433733; /* brown text */
+}
+
+.note-option {
+    width: 25px;
+    height: 20px;
+    cursor: pointer;
+}
