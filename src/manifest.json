@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "PK Sticky Notes",
+  "name": "PK Sticky Notes Chrome",
   "version": "1.0.1",
   "description": "Add sticky notes to web pages",
   "permissions": ["storage", "activeTab", "tabs", "contextMenus"],

@@ -1,4 +1,4 @@
-# PK Sticky Notes
+# PK Sticky Notes Chrome
 
 ![Project icon](icon.png)
 
