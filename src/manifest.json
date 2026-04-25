@@ -1,12 +1,14 @@
 {
   "manifest_version": 3,
   "name": "PK Sticky Notes",
-  "version": "1.0",
+  "version": "1.0.1",
   "description": "Add sticky notes to web pages",
-  "permissions": ["storage", "activeTab", "tabs", "contextMenus", "cookies"],
-  "host_permissions": [
-    "https://mondary.design/*"
-  ],
+  "permissions": ["storage", "activeTab", "tabs", "contextMenus"],
+  "icons": {
+    "16": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  },
   "action": {
     "default_title": "Create New Note",
     "default_icon": "icon.png"

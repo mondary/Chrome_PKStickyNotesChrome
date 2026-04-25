@@ -1,275 +1,42 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>PK Sticky Notes Settings</title>
+  <title>PK Sticky Notes Options</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background-color: #f8f9fa;
-      color: #333;
-      line-height: 1.6;
-      padding: 0;
+      font-family: Arial, sans-serif;
+      padding: 20px;
       min-width: 400px;
     }
-
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 20px;
-    }
-
-    header {
-      background: white;
-      border-bottom: 1px solid #e1e5e9;
-      padding: 20px 0;
-      margin-bottom: 30px;
-    }
-
-    h1 {
-      font-size: 24px;
-      font-weight: 600;
-      color: #1a1a1a;
-      margin: 0;
-      padding: 0 20px;
-    }
-
-    .settings-section {
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-      margin-bottom: 20px;
-      overflow: hidden;
-    }
-
-    .section-header {
-      padding: 16px 20px;
-      border-bottom: 1px solid #e1e5e9;
-      background-color: #fafafa;
-    }
-
-    .section-title {
-      font-size: 16px;
-      font-weight: 600;
-      color: #1a1a1a;
-      margin: 0;
-    }
-
-    .section-content {
-      padding: 20px;
-    }
-
-    .setting-item {
+    
+    .option {
+      margin: 15px 0;
       display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      padding: 12px 0;
-      border-bottom: 1px solid #f0f0f0;
+      align-items: center;
+      gap: 10px;
     }
-
-    .setting-item:last-child {
-      border-bottom: none;
-    }
-
-    .setting-label {
-      flex: 1;
-      padding-right: 20px;
-    }
-
-    .setting-label h3 {
-      font-size: 14px;
-      font-weight: 500;
-      color: #1a1a1a;
-      margin: 0 0 4px 0;
-    }
-
-    .setting-label p {
-      font-size: 13px;
-      color: #666;
-      margin: 0;
-    }
-
-    .setting-control {
-      flex-shrink: 0;
-      margin-left: 20px;
-    }
-
-    .switch {
-      position: relative;
-      display: inline-block;
-      width: 44px;
-      height: 24px;
-    }
-
-    .switch input {
-      opacity: 0;
-      width: 0;
-      height: 0;
-    }
-
-    .slider {
-      position: absolute;
-      cursor: pointer;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: #ccc;
-      transition: .4s;
-      border-radius: 24px;
-    }
-
-    .slider:before {
-      position: absolute;
-      content: "";
-      height: 18px;
-      width: 18px;
-      left: 3px;
-      bottom: 3px;
-      background-color: white;
-      transition: .4s;
-      border-radius: 50%;
-    }
-
-    input:checked + .slider {
-      background-color: #007bff;
-    }
-
-    input:checked + .slider:before {
-      transform: translateX(20px);
-    }
-
-    .actions {
-      background: white;
-      border-radius: 8px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-      padding: 20px;
-      margin-top: 20px;
-    }
-
-    .btn {
-      background: #007bff;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 14px;
-      font-weight: 500;
-    }
-
-    .btn:hover {
-      background: #0056b3;
-    }
-
-    .status {
-      margin-top: 15px;
-      padding: 10px;
-      border-radius: 6px;
-      background: #d4edda;
-      color: #155724;
-      display: none;
+    
+    h1 {
+      font-size: 1.3em;
+      margin-bottom: 20px;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>Settings</h1>
-    </header>
-
-    <div class="settings-section">
-      <div class="section-header">
-        <h2 class="section-title">Display Preferences</h2>
-      </div>
-      <div class="section-content">
-        <div class="setting-item">
-          <div class="setting-label">
-            <h3>Show Floating Button</h3>
-            <p>Display the floating '+' button on web pages</p>
-          </div>
-          <div class="setting-control">
-            <label class="switch">
-              <input type="checkbox" id="showFloatingButton" checked>
-              <span class="slider"></span>
-            </label>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="settings-section">
-      <div class="section-header">
-        <h2 class="section-title">PKnotes Sync</h2>
-      </div>
-      <div class="section-content">
-        <div class="setting-item">
-          <div class="setting-label">
-            <h3>Sync with PKnotes</h3>
-            <p>Synchronize notes with PKnotes service - <a href="https://mondary.design/pk/pknotes/index.html" target="_blank">Login to your account</a></p>
-          </div>
-          <div class="setting-control">
-            <label class="switch">
-              <input type="checkbox" id="syncOnline">
-              <span class="slider"></span>
-            </label>
-          </div>
-        </div>
-
-         <div class="setting-item">
-           <div class="setting-label">
-             <h3>Login to PKnotes</h3>
-             <p>Login to your PKnotes account to enable sync</p>
-           </div>
-           <div class="setting-control">
-             <button id="login" class="btn">Login</button>
-           </div>
-         </div>
-
-         <div class="setting-item">
-           <div class="setting-label">
-             <h3>Manual Sync</h3>
-             <p>Manually sync your notes with the server</p>
-           </div>
-           <div class="setting-control">
-             <button id="manual-sync" class="btn">Sync Now</button>
-           </div>
-         </div>
-
-         <div class="setting-item">
-           <div class="setting-label">
-             <h3>Send Test Note</h3>
-             <p>Send a test note to check sync</p>
-           </div>
-           <div class="setting-control">
-             <button id="test-note" class="btn">Send Test</button>
-           </div>
-         </div>
-
-         <div class="setting-item">
-           <div class="setting-label">
-             <h3>Get Notes</h3>
-             <p>Fetch notes from server</p>
-           </div>
-           <div class="setting-control">
-             <button id="get-notes" class="btn">Get Notes</button>
-           </div>
-         </div>
-        <div id="sync-status" class="status"></div>
-      </div>
-    </div>
-
-    <div class="actions">
-      <button id="save" class="btn">Save Settings</button>
-      <div id="status" class="status"></div>
-    </div>
-
+  <h1>PK Sticky Notes Options</h1>
+  
+  <div class="option">
+    <input type="checkbox" id="showFloatingButton" checked>
+    <label for="showFloatingButton">Show Floating Action Button</label>
   </div>
+  
+  <div class="option">
+    <input type="checkbox" id="savePosition" checked>
+    <label for="savePosition">Save Notes Position</label>
+  </div>
+  
+  <button id="save">Save Settings</button>
+  <div id="status" style="margin-top: 10px; color: green; display: none;"></div>
 
   <script src="options.js"></script>
 </body>
