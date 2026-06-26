@@ -67,15 +67,13 @@ L'extension n'utilise aucun code JavaScript ou WebAssembly externe. Tout le code
 
 ## 6. Règles de confidentialité
 
-**Option 1 : Créer une page de confidentialité**
+**URL a renseigner dans le Chrome Web Store :**
 
 ```
-https://mondary.design/privacy-policy-pk-sticky-notes-chrome
+https://mondary.github.io/Chrome_PKStickyNotesChrome/store/privacy-policy-pk-sticky-notes-chrome.html
 ```
 
-**Option 2 : Utiliser une page existante**
-
-Si vous n'avez pas encore de page de confidentialité, vous pouvez créer un fichier simple et l'héberger sur GitHub Pages ou votre site existant.
+Cette URL doit pointer directement vers la politique de confidentialite dediee a PK Sticky Notes Chrome. Eviter une page d'accueil, une page de marque generale ou une URL qui renvoie une erreur HTTP.
 
 ---
 

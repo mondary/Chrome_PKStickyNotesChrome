@@ -84,7 +84,7 @@ PK Sticky Notes Chrome respecte votre vie privée :
 - ✅ **Pas de Tracking** : Aucune collecte de données d'utilisation
 - ✅ **Pas de Serveurs Externes** : Vos notes ne quittent jamais votre navigateur
 
-Pour plus de détails, consultez notre [Politique de Confidentialité](https://mondary.design/privacy-policy-pk-sticky-notes-chrome).
+Pour plus de détails, consultez notre [Politique de Confidentialité](https://mondary.github.io/Chrome_PKStickyNotesChrome/store/privacy-policy-pk-sticky-notes-chrome.html).
 
 ## 🛠️ Développement
 
@@ -125,7 +125,7 @@ PKStickyNotesChrome/
 ## 🔗 Liens Utiles
 
 - **Chrome Web Store** : [Lien vers l'extension](https://chrome.google.com/webstore/detail/pk-sticky-notes-chrome)
-- **Politique de Confidentialité** : [mondary.design](https://mondary.design/privacy-policy-pk-sticky-notes-chrome)
+- **Politique de Confidentialité** : [GitHub Pages](https://mondary.github.io/Chrome_PKStickyNotesChrome/store/privacy-policy-pk-sticky-notes-chrome.html)
 - **Site du Développeur** : [mondary.design](https://mondary.design)
 
 ## 📝 Licence
