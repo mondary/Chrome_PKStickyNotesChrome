@@ -1,10 +1,10 @@
-# PK Sticky Notes Chrome
+# PK Sticky Notes
 
 ![Project icon](icon.png)
 
 [🇬🇧 EN](README_en.md) · [🇫🇷 FR](README.md)
 
-✨ Ajoutez des notes collantes directement sur vos pages web.
+✨ Ajoutez des notes collantes directement sur vos pages web. Made by PK-Labs.
 
 ## 🎯 Aperçu
 
@@ -112,6 +112,10 @@ PKStickyNotesChrome/
 
 ## 🧾 Changelog
 
+### Version 1.0.3
+- 🎨 Mise à jour branding PK-Labs, noms cohérents et descriptions optimisées
+- 🌐 Ajout lien vers mondary.design dans les descriptions
+
 ### Version 1.0.1
 - 📝 Mise à jour du README
 - 🎨 Amélioration de l'interface
@@ -124,9 +128,10 @@ PKStickyNotesChrome/
 
 ## 🔗 Liens Utiles
 
-- **Chrome Web Store** : [Lien vers l'extension](https://chrome.google.com/webstore/detail/pk-sticky-notes-chrome)
+- **Chrome Web Store** : [PK Sticky Notes](https://chrome.google.com/webstore/detail/pk-sticky-notes-chrome)
 - **Politique de Confidentialité** : [GitHub Pages](https://mondary.github.io/Chrome_PKStickyNotesChrome/store/privacy-policy-pk-sticky-notes-chrome.html)
-- **Site du Développeur** : [mondary.design](https://mondary.design)
+- **Site** : [mondary.design](https://mondary.design)
+- **Description** : [store/DESCRIPTION.md](store/DESCRIPTION.md)
 
 ## 📝 Licence
 
